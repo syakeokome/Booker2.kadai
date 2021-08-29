@@ -1,0 +1,27 @@
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h1>Editing Book</h1>
+        <%= form_with model:@book, local: true do |f| %>
+        <% if @book.errors.any? %>
+        <%= @book.errors.count %> errors prohibited this book from being saved:
+        <% @book.errors.full_messages.each do |message| %>
+        <%= message %>
+        <% end %>
+        <% end %>
+        <div class="field">
+           <h4>Title</h4>
+           <%= f.text_field :title , class:"form-control"%>
+        </div>
+        <div class="field">
+          <h4>Body</h4>
+          <%= f.text_area :body, class:"form-control" %>
+        </div>
+        <%= f.submit 'Update Book', class:"btn btn-success"%>
+        <%=link_to "Show",book_path(@book) %> |
+        <%=link_to "Back",books_path %>
+        <% end %>
+    </div>
+  </div>
+</div>

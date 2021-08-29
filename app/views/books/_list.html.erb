@@ -1,0 +1,28 @@
+<% if book.errors.any? %>
+  <%= book.errors.count %>件のerror
+  <% book.errors.full_messages.each do |message| %>
+   <%= message %>
+  <% end %>
+<% end %>
+<h2>User info</h2>
+      <%= attachment_image_tag user, :profile_image,format:'jpeg', fallback:"no_image.jpg",:size=>'100x100' %>
+      <table class="table">
+       <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+       </tr>
+       <tr>
+         <th>introduction</th>
+         <td><%= user.introduction %></td>
+        </tr>
+      </table>
+      <%= link_to "", edit_user_path(user), class:"btn btn-outline-secondary btn-block fas fa-user-cog edit_user_id" %>
+
+            <h2>New book</h2>
+      <%= form_with model: book, url: '/books', local:true do |f| %>
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+      <h4>Opinion</h4>
+      <%= f.text_area :body %>
+      <%= f.submit 'Create Book' %>
+      <% end %>

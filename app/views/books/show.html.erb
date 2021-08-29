@@ -1,0 +1,34 @@
+<div class="container" px-5 px-sm-0>
+  <div class="row">
+    <div class="col-md-3">
+       <%= render'books/list', user:@user,book:@book_new %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <%= link_to user_path(@book.user) do %>
+                         <%= attachment_image_tag @book.user, :profile_image,format:'jpeg', fallback:"no_image.jpg",:size=>'50x50' %>
+                         <%= @book.user.name %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%= link_to @book.title, book_path(@book.id) %>
+                    </td>
+                    <td>
+                        <%= @book.body %>
+                    </td>
+                    <% if @book.user == current_user %>
+                    <td>
+                     <%=link_to "Edit",edit_book_path(@book), class:"btn btn-success" %>
+                    </td>
+                    <td>
+                     <%=link_to "Destroy",book_path(@book), method: :delete, data: { confirm: "本当に消しますか？"}, class:"btn btn-danger" %>
+                    </td>
+                    <% end %>
+                </tr>
+            </tbody>
+        </table>
+    </div>
